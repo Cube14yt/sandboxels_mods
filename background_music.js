@@ -189,7 +189,7 @@ function showSongUi() {
     const canvas_div = document.getElementById("canvasDiv");
     if (!canvas_div) {
         console.log(canvas_div)
-        setTimeout(showSongUi, 100)
+        requestAnimationFrame(showSongUi)
     };
 
     if (!songDiv) {
