@@ -1,6 +1,5 @@
 // Huge WIP
 // Will be making an actual UI for this soon
-
 function loadJsDelivr(url, callback) {
     const script = document.createElement('script');
     script.src = url;
@@ -177,9 +176,9 @@ function createResetButton() {
 
 function createSongInput() {
     const inputButton = document.createElement('button')
-    inputButton.onclick = function() {
+    inputButton.onclick = function () {
         promptChoose("How do you want to input your song?", ["URL", "File"], (choice) => {
-            
+
         })
     }
 }
@@ -201,5 +200,7 @@ function showSongUi() {
     }
 }
 
-addCss()
-showSongUi()
+runAfterLoad(() => {
+    addCss()
+    showSongUi()
+})
