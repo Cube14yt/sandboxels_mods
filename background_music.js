@@ -202,13 +202,44 @@ function showSongUi() {
 
 function initSongUi() {
     const canvasDiv = document.getElementById("canvasDiv");
+
+    // Retry if parent doesn't exist yet
     if (!canvasDiv) {
-        // DOM not ready yet, try again next frame
         requestAnimationFrame(initSongUi);
         return;
     }
 
-    addCss()
-    showSongUi()
+    // Only insert CSS once
+    if (!document.getElementById("songCss")) {
+        const CSS = `
+        .songControl {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            height: 20px;
+            pointer-events: none;
+            background-color: transparent;
+            border: 2px solid white;
+            box-shadow: 0 0 8px rgba(0,0,0,0.8);
+        }`;
+        const style_div = document.createElement("style");
+        style_div.id = "songCss"; // mark so we don’t add multiple
+        style_div.innerHTML = CSS;
+        document.head.appendChild(style_div);
+    }
+
+    // Only insert the UI once
+    if (!document.getElementById("songUiParent")) {
+        showSongUi(); // your existing function
+    }
 }
+
+// start the initialization
 initSongUi();
