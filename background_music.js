@@ -200,7 +200,15 @@ function showSongUi() {
     }
 }
 
-runAfterLoad(() => {
+function initSongUi() {
+    const canvasDiv = document.getElementById("canvasDiv");
+    if (!canvasDiv) {
+        // DOM not ready yet, try again next frame
+        requestAnimationFrame(initSongUi);
+        return;
+    }
+
     addCss()
     showSongUi()
-})
+}
+initSongUi();
